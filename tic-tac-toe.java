@@ -38,6 +38,43 @@ public class Main
     	        board[row][col] = 0;
     }
 
+    public static int   check_draw() {
+        int players_draw = 1;
+
+        for (int row = 0; row < board.length; row++) 
+	        for (int col = 0; col < board[row].length; col++) 
+	            if (board[row][col] == 0)
+	                players_draw = 0;
+        return (players_draw);
+    }
+    public static int   check_win(int p_player) {
+        int player_won = 0;
+        // loop horizontally
+        for (int row = 0; row < board.length; row++)
+            if (board[row][0] == p_player && board[row][1] == p_player && board[row][2] == p_player)
+                return (1);
+        // loop vertically
+        for (int col = 0; col < board.length; col++)
+            if (board[0][col] == p_player && board[1][col] == p_player && board[2][col] == p_player)
+                return (1);
+        // check diagnally
+        if (board[0][0] == p_player && board[1][1] == p_player && board[2][2] == p_player)
+            return (1);
+        if (board[0][2] == p_player && board[1][1] == p_player && board[2][0] == p_player)
+            return (1);
+        return (player_won);
+    }
+    public static int  win_condition() {
+        // check for win loss else is a draw if all filled
+        if (check_win(1) == 1)
+            return (1);
+        if (check_win(2) == 1)
+            return (2);
+        if (check_draw() == 1)
+            return (3);
+        return (0);
+    }
+
 	public static void main(String[] args) {
         String l_row;
         String l_col;
@@ -66,7 +103,14 @@ public class Main
                         player = 1;
                 }
             }
-
+            game_state = win_condition();
         }
+        if (game_state == 1)
+                System.out.println("player X wins!");
+        if (game_state == 2)
+                System.out.println("player O wins!");
+        if (game_state == 3)
+                System.out.println("draw!");
+
 	}
 }
