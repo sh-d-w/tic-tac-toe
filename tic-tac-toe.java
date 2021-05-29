@@ -9,6 +9,9 @@ public class Main
     //5. put in infinite loop
 
     public static int[][] board = new int[3][3];
+    public static int col, row;
+    public static int player;
+    public static String[] players;
 
     public static void  print_board() {
         System.out.println("-------------");
@@ -35,11 +38,24 @@ public class Main
     }
 
 	public static void main(String[] args) {
+        String l_row;
+        String l_col;
 
+        Scanner sc= new Scanner(System.in); //System.in is a standard input stream  
+
+        player = 1;
+        players = new String[] { "X","O" };
         init_board();
 		print_board();
+        System.out.print("Player " + players[player - 1] + ", please enter a row (0, 1 or 2): ");  
+        l_row = sc.nextLine();              //reads string   
+        System.out.print("Player " + players[player - 1] + ", please enter a column (0, 1 or 2): ");  
+        l_col = sc.nextLine();              //reads string   
 
-        System.out.println("Hello world!");  
+        row = Integer.parseInt(l_row);
+        col = Integer.parseInt(l_col);
+
+        System.out.println("Hello world!" + l_col + " " + l_row);  
 
 	}
 }
