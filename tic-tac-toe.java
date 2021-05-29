@@ -66,6 +66,7 @@ public class Main
                         player = 1;
                 }
             }
+
         }
 	}
 }
